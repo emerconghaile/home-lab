@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.4.5"
+  required_version = ">= 1.5.7"
 
   required_providers {
     proxmox = {
@@ -68,5 +68,5 @@ resource "proxmox_lxc" "ansible-01" {
 }
 
 resource "proxmox_vm_qemu" "rke-01" {
-  
+
 }
