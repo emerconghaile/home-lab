@@ -1,0 +1,4 @@
+home_lab_password = ""
+ssh_public_key    = ""
+pm_api_url        = ""
+pm_user           = ""
