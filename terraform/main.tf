@@ -63,10 +63,13 @@ resource "proxmox_lxc" "ansible-01" {
   #     "sudo dnf update -y",
   #     "sudo dnf install epel-release -y",
   #     "sudo dnf install ansible -y",
+  #     "sudo dnf install git -y",
+  #     "sudo dnf install openssh-server -y",
+  #     "sudo systemctl enable --now sshd",
   #   ]
   # }
 }
 
-resource "proxmox_vm_qemu" "rke-01" {
-
+resource "proxmox_vm_qemu" "rke-nodes" {
+  
 }
