@@ -19,7 +19,7 @@ provider "proxmox" {
 resource "proxmox_lxc" "ansible-01" {
   # provisioning from LXC template
   # -------------------------------
-  ostemplate  = "nas-01_pve_isos_templates:vztmpl/rockylinux-9-default_20221109_amd64.tar.xz"
+  ostemplate      = "nas-01_pve_isos_templates:vztmpl/rockylinux-9-default_20221109_amd64.tar.xz"
   ssh_public_keys = <<-EOT
     ${var.ssh_public_key}
   EOT
@@ -71,5 +71,28 @@ resource "proxmox_lxc" "ansible-01" {
 }
 
 resource "proxmox_vm_qemu" "rke-nodes" {
-  
+  name        = "rke-02"
+  desc        = "An RKE2 node"
+  target_node = "pve-02"
+  clone       = "rocky-9-generic-cloud-qemu-template"
+  agent       = 1
+  os_type     = "Linux 6.x - 2.6 Kernel"
+  cores       = 2
+  sockets     = 1
+  memory      = 2048
+  onboot      = true
+  startup     = true
+
+  disk {
+    storage = "nas-01_pve_vm_disks"
+    size    = "20G"
+    type    = "scsi"
+  }
+
+  network {
+    model  = "virtio"
+    bridge = "vmbr0"
+  }
+
+  ipconfig0 = "ip=172.21.0.31/24,gw=172.21.0.1"
 }
