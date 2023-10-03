@@ -71,17 +71,24 @@ resource "proxmox_lxc" "ansible-01" {
 }
 
 resource "proxmox_vm_qemu" "rke-nodes" {
-  name        = "rke-02"
+  count       = 3
+  name        = "rake-0${count.index + 1}"
   desc        = "An RKE2 node"
-  target_node = "pve-02"
-  clone       = "rocky-9-generic-cloud-qemu-template"
+  target_node = "pve-0${count.index + 1}"
+  clone       = "ubuntu-cloud-jammy-server"
+  os_type     = "cloud-init"
   agent       = 1
-  os_type     = "Linux 6.x - 2.6 Kernel"
-  cores       = 2
   sockets     = 1
-  memory      = 2048
+  cpu         = "x86-64-v2-AES"
+  cores       = 4
+  memory      = 8192
   onboot      = true
-  startup     = true
+  scsihw      = "virtio-scsi-pci"
+  bootdisk    = "scsi0"
+
+  vga {
+    type = "serial0"
+  }
 
   disk {
     storage = "nas-01_pve_vm_disks"
@@ -95,4 +102,8 @@ resource "proxmox_vm_qemu" "rke-nodes" {
   }
 
   ipconfig0 = "ip=172.21.0.31/24,gw=172.21.0.1"
+
+  sshkeys = <<-EOT
+    ${var.ssh_public_key}
+  EOT
 }
