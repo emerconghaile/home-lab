@@ -70,12 +70,12 @@ resource "proxmox_lxc" "ansible-01" {
   # }
 }
 
-resource "proxmox_vm_qemu" "rke-nodes" {
+resource "proxmox_vm_qemu" "rke-cluster" {
   count       = 3
-  name        = "rake-0${count.index + 1}"
+  name        = "rke-0${count.index + 1}"
   desc        = "An RKE2 node"
   target_node = "pve-0${count.index + 1}"
-  clone       = "ubuntu-cloud-jammy-server"
+  clone       = "rocky-9-cloud-init"
   os_type     = "cloud-init"
   agent       = 1
   sockets     = 1
@@ -101,7 +101,7 @@ resource "proxmox_vm_qemu" "rke-nodes" {
     bridge = "vmbr0"
   }
 
-  ipconfig0 = "ip=172.21.0.31/24,gw=172.21.0.1"
+  ipconfig0 = "ip=172.21.0.3${count.index}/24,gw=172.21.0.1"
 
   sshkeys = <<-EOT
     ${var.ssh_public_key}
