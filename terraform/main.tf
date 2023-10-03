@@ -76,19 +76,16 @@ resource "proxmox_vm_qemu" "rke-cluster" {
   desc        = "An RKE2 node"
   target_node = "pve-0${count.index + 1}"
   clone       = "rocky-9-cloud-init"
-  os_type     = "cloud-init"
-  agent       = 1
-  sockets     = 1
-  cpu         = "x86-64-v2-AES"
-  cores       = 4
-  memory      = 8192
-  onboot      = true
-  scsihw      = "virtio-scsi-pci"
-  bootdisk    = "scsi0"
 
-  vga {
-    type = "serial0"
-  }
+  cpu      = "x86-64-v2-AES"
+  sockets  = 1
+  cores    = 4
+  memory   = 8192
+  scsihw   = "virtio-scsi-single"
+  iothread = 1
+  os_type  = "cloud-init"
+  onboot   = true
+  agent    = 1
 
   disk {
     storage = "nas-01_pve_vm_disks"
