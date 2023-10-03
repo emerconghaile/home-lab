@@ -5,7 +5,8 @@
 - a RAID-5 NAS
 
 # [Packer](packer/) templates
-- download [Rocky-9.2-x86_64-dvd.iso](http://dl.rockylinux.org/pub/rocky/9.2/isos/x86_64/Rocky-9.2-x86_64-dvd.iso) to Proxmox ISO storage
+- download ISOs to Proxmox storage
+  - [Rocky-9.2-x86_64-dvd.iso](http://dl.rockylinux.org/pub/rocky/9.2/isos/x86_64/Rocky-9.2-x86_64-dvd.iso)
 - if running Packer from WSL2
   - in [variables.pkrvars.hcl](packer/variables.pkrvars.hcl)
     - set `boot_command_ip` to Windows host IP address
