@@ -94,8 +94,8 @@ source "proxmox-iso" "rocky-9_2-x86_64" {
   username = "${var.proxmox_username}"
   password = "${var.proxmox_password}"
 
-  cloud_init              = true
-  cloud_init_storage_pool = "${var.proxmox_storage_pool}"
+  cloud_init = false
+  # cloud_init_storage_pool = "${var.proxmox_storage_pool}"
 
   ssh_port     = 22
   ssh_timeout  = "30m"

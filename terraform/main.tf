@@ -77,14 +77,15 @@ resource "proxmox_vm_qemu" "rke-cluster" {
   target_node = "pve-0${count.index + 1}"
   clone       = "rocky-9-cloud-init"
 
-  cpu     = "x86-64-v2-AES"
-  sockets = 1
-  cores   = 4
-  memory  = 8192
-  scsihw  = "virtio-scsi-single"
-  os_type = "cloud-init"
-  onboot  = true
-  agent   = 1
+  cpu                     = "x86-64-v2-AES"
+  sockets                 = 1
+  cores                   = 4
+  memory                  = 8192
+  scsihw                  = "virtio-scsi-single"
+  os_type                 = "cloud-init"
+  cloudinit_cdrom_storage = "nas-01_pve_vm_disks"
+  onboot                  = true
+  agent                   = 1
 
   disk {
     storage  = "nas-01_pve_vm_disks"
