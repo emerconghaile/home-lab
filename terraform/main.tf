@@ -64,7 +64,6 @@ resource "proxmox_lxc" "ansible-01" {
   #     "sudo dnf install epel-release -y",
   #     "sudo dnf install ansible -y",
   #     "sudo dnf install git -y",
-  #     "sudo dnf install openssh-server -y",
   #     "sudo systemctl enable --now sshd",
   #   ]
   # }
