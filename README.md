@@ -1,6 +1,6 @@
 # home-lab
 
-# [packer/]()Rocky 9.2 template for Proxmox with Packer
+# [test](packer/)Rocky 9.2 template for Proxmox with Packer
 - download [.iso](http://dl.rockylinux.org/pub/rocky/9.2/isos/x86_64/Rocky-9.2-x86_64-dvd.iso) to Proxmox ISO storage
 - if running Packer from WSL2
   - set `boot_command_ip` to Windows host IP address
