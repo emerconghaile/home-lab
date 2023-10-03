@@ -1,11 +1,7 @@
-.PHONY: packer terraform all
+.PHONY: make all
 
-all: packer terraform
+all: make
 
-packer:
-	packer init packer/packer.pkr.hcl
-	packer build -var-file packer/variables.pkrvars.hcl packer/packer.pkr.hcl
-
-terraform:
-	terraform -chdir=terraform init
-	terraform -chdir=terraform apply -auto-approve
+make:
+	$(MAKE) -C packer all
+	$(MAKE) -C terraform all

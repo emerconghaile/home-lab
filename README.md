@@ -17,7 +17,7 @@
   - https://forums.rockylinux.org/t/generic-cloud-or-qcow/2446/11
   - https://docs.rockylinux.org/guides/automation/templates-automation-packer-vsphere/
 
-# [Terraform](terraform/) deployments
+# [Terraform](terraform/) provisioning
 - helpful links
   - https://www.runatlantis.io/
   - https://www.reddit.com/r/homelab/comments/zn1aym/refactored_my_proxmox_terraform_code/
