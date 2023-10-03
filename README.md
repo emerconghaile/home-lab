@@ -18,3 +18,9 @@
     ```
 - credits
   - https://github.com/dustinrue/proxmox-packer/
+
+# [Terraform](terraform/) deployments
+- 
+
+# [Ansible](ansible/) configurations
+- 
