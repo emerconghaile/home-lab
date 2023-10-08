@@ -99,9 +99,11 @@ resource "proxmox_vm_qemu" "rke-cluster" {
     bridge = "vmbr0"
   }
 
+  ciuser    = "homelab"
   ipconfig0 = "ip=172.21.0.3${count.index}/24,gw=172.21.0.1"
 
   sshkeys = <<-EOT
-    ${var.ssh_public_key}
+    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM0ZLI+vtcQs5FjEQCD9St5EANq4+s8AcVf0qbadwVHo emerconn7@gmail.com
+    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIONNqFArZ6kjbEYaFEinmRaFwsMoLIIIoNvGfWwmEu3r emer.connelly@wolterskluwer.com
   EOT
 }
