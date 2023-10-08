@@ -57,11 +57,6 @@ variable "template_description" {
   default = "Rocky Linux 9 with cloud-init"
 }
 
-variable "version" {
-  type    = string
-  default = ""
-}
-
 variable "boot_command_ip" {
   type    = string
   default = "{{ .HTTPIP }}"
@@ -121,6 +116,18 @@ build {
   sources = ["source.proxmox-iso.rocky-9_2-x86_64"]
 
   provisioner "shell" {
-    inline = ["yum install -y cloud-init qemu-guest-agent cloud-utils-growpart gdisk", "systemctl enable qemu-guest-agent", "shred -u /etc/ssh/*_key /etc/ssh/*_key.pub", "rm -f /var/run/utmp", ">/var/log/lastlog", ">/var/log/wtmp", ">/var/log/btmp", "rm -rf /tmp/* /var/tmp/*", "unset HISTFILE; rm -rf /home/*/.*history /root/.*history", "rm -f /root/*ks", "passwd -d root", "passwd -l root", "rm -f /etc/ssh/ssh_config.d/allow-root-ssh.conf"]
+    inline = [
+      "yum install -y cloud-init qemu-guest-agent cloud-utils-growpart gdisk",
+      "systemctl enable qemu-guest-agent",
+      "shred -u /etc/ssh/*_key /etc/ssh/*_key.pub",
+      "rm -f /var/run/utmp", ">/var/log/lastlog",
+      ">/var/log/wtmp", ">/var/log/btmp",
+      "rm -rf /tmp/* /var/tmp/*",
+      "unset HISTFILE; rm -rf /home/*/.*history /root/.*history",
+      "rm -f /root/*ks",
+      "passwd -d root",
+      "passwd -l root",
+      "rm -f /etc/ssh/ssh_config.d/allow-root-ssh.conf",
+      ]
   }
 }
