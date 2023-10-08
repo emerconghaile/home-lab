@@ -19,9 +19,9 @@ provider "proxmox" {
 resource "proxmox_lxc" "ansible-01" {
   # provisioning from LXC template
   # -------------------------------
-  ostemplate      = "nas-01_pve_isos_templates:vztmpl/rockylinux-9-default_20221109_amd64.tar.xz"
+  ostemplate = "nas-01_pve_isos_templates:vztmpl/rockylinux-9-default_20221109_amd64.tar.xz"
   #ssh_public_keys = <<-EOT
-    #${var.ssh_public_key}
+  #${var.ssh_public_key}
   #EOT
   # -------------------------------
 
